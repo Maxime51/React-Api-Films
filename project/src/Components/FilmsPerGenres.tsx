@@ -13,6 +13,7 @@ function FilmsPerGenres(props:any) {
   }
   useEffect(() => {
     async function fetchMyAPI() {
+      console.log(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&page=${props.page}&with_genres=${props.genreSelect}&with_watch_monetization_types=flatrate`)
       const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&page=${props.page}&with_genres=${props.genreSelect}&with_watch_monetization_types=flatrate`)
       const responseFormat = await response.json()
       setFilms(responseFormat.results)
@@ -29,7 +30,7 @@ function FilmsPerGenres(props:any) {
             return (
               <div className="col-2" data-value={film.id} onClick={()=>(loadFilmDetails(film.id))}  >
                 <div className="card">
-                  <img src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`} className="card-img-top" />
+                  <img src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`} className="card-img-top"/>
                   <div className="card-body">
                     <h5 className="card-title cardFormat">{film.title}</h5>
                   </div>
@@ -42,7 +43,7 @@ function FilmsPerGenres(props:any) {
     );
   } else {
     return (
-      <div className="container">
+      <div className="container" >
         <ul className="pagination">
           <li className="page-item"><a className="page-link" onClick={()=>setFilmDetailLoad("")}>Back</a></li>
         </ul>

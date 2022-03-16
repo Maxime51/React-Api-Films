@@ -21,15 +21,17 @@ function FilmsNavBar() {
   }, []);
 
   useEffect(() => {
-    if (pageSelected < 0) {
-      setpageSelected(0)
+    console.log(pageSelected)
+    if (pageSelected < 1) {
+      setpageSelected(1)
+    } else {
+      setGenreSelected(<FilmsPerGenres genreSelect={genre} page={pageSelected} />);
     }
-     setGenreSelected(<FilmsPerGenres genreSelect={genre} page={pageSelected}/>);
   }, [genre,pageSelected]);
 
 
   return (
-    <div>
+    <div >
       <ul className="nav nav-tabs" >
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Genre</a>
