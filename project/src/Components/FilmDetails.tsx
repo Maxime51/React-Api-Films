@@ -13,19 +13,21 @@ function FilmsDetails(props:any) {
 
   useEffect(() => {
     async function fetchMyAPI() {
+      console.log(`https://api.themoviedb.org/3/movie/${props.idFilmSelect}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
       const response = await fetch(`https://api.themoviedb.org/3/movie/${props.idFilmSelect}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
       const responseFormat = await response.json();
       setTitle(responseFormat.title)
       setPoster(responseFormat.poster_path)
       setOverview(responseFormat.overview)
       setBudget(responseFormat.budget)
-      setRelease_date(responseFormat.release_date)
+      setRelease_date(responseFormat.release_date);
+      (document.getElementById("blocDetails") as any).style.background = `url(https://image.tmdb.org/t/p/w500/${responseFormat.backdrop_path}) `;
     }
     fetchMyAPI()
   }, []);
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" >
       <div className='container'>
           <div className="card mb-3">
           <div className="row no-gutters">

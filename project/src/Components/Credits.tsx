@@ -16,7 +16,6 @@ function Credits(props:any) {
     }
     fetchMyAPI()
   }, []);
-
   return (
     <div className="overflow-auto" >
     <div className="row flex-row flex-nowrap">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FilmsPerGenres from './FilmsPerGenres';
+import NavBar from './NavBar';
 
 type Film = {
   title: string
@@ -21,7 +22,7 @@ function FilmsNavBar() {
   }, []);
 
   useEffect(() => {
-    console.log(pageSelected)
+
     if (pageSelected < 1) {
       setpageSelected(1)
     } else {
@@ -32,7 +33,7 @@ function FilmsNavBar() {
 
   return (
     <div >
-      <ul className="nav nav-tabs" >
+      <ul className="nav nav-tabs" id="filmNavBar" >
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Genre</a>
           <ul className="dropdown-menu">
@@ -42,7 +43,7 @@ function FilmsNavBar() {
           </ul>
         </li>
       </ul>
-      <nav aria-label="Page navigation example">
+      <nav aria-label="Page navigation example" id="paginationFilmsGenre">
         <ul className="pagination">
           <li className="page-item"><a className="page-link" onClick={()=>setpageSelected(pageSelected-1)}>Previous</a></li>
           <li className="page-item"><a className="page-link" onClick={()=>setpageSelected(pageSelected+1)}>Next</a></li>

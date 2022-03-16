@@ -9,7 +9,10 @@ function FilmsPerGenres(props:any) {
 
   function loadFilmDetails(id: any) {
     setFilmDetailLoad(id)
-    setFilmDetail(< FilmDetails idFilmSelect={id}/>);
+    setFilmDetail(< FilmDetails idFilmSelect={id} />);
+
+    (document.getElementById("filmNavBar") as any).style.display = "none";
+    (document.getElementById("paginationFilmsGenre") as any).style.display = "none";
   }
   useEffect(() => {
     async function fetchMyAPI() {
@@ -21,10 +24,15 @@ function FilmsPerGenres(props:any) {
     fetchMyAPI()
   }, [props.genreSelect, props.page]);
 
-
+  function back() {
+    setFilmDetailLoad("");
+    (document.getElementById("filmNavBar") as any).style.display = "block";
+    (document.getElementById("paginationFilmsGenre") as any).style.display = "block";
+    (document.getElementById("blocDetails") as any).style.backgroundImage = `url()`;
+}
   if (filmDetailLoad === "") {
     return (
-      <div className="container">
+      <div className="container" id="blocDetails">
         <div className="row">
           {films.map((film: any) => {
             return (
@@ -43,9 +51,9 @@ function FilmsPerGenres(props:any) {
     );
   } else {
     return (
-      <div className="container" >
+      <div className="container-fluid" id="blocDetails" >
         <ul className="pagination">
-          <li className="page-item"><a className="page-link" onClick={()=>setFilmDetailLoad("")}>Back</a></li>
+          <li className="page-item"><a className="page-link" onClick={back}>Back</a></li>
         </ul>
         {filmDetail}
       </div>
